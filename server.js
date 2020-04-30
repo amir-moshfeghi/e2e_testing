@@ -2,13 +2,12 @@ const express = require("express")
 
 const app = express()
 console.log
-app.post("/api/v1/auth/login/", (req, res) => {
-  res.send({
-    "username": "amir5",
-    "password": "1234569"
-})
-console.log(res)
-})
-
+app.post('/', function (req, res, next) {
+  let content = req.body;
+  if (content.id) { 
+      return res.status(201).json("user logged in");
+  }
+  return res.status(404).json('user not found');
+});
 
 module.exports = app
